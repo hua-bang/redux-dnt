@@ -1,8 +1,11 @@
-import { Reducer, Store, Dispatch, Action, AnyAction, Enhancer } from './typings';
+import { Reducer, Store, Dispatch, AnyAction, Enhancer } from './typings';
 
-export function createStore<S, A extends AnyAction>(reducer: Reducer<S, A>, enhancer?: Enhancer): Store<S, A> {
+export function createStore<S, A extends AnyAction>(
+  reducer: Reducer<S, A>, 
+  enhancer?: Enhancer<S, A>
+): Store<S, A> {
   if(enhancer) {
-    return enhancer(createStore as any)(reducer);
+    return enhancer(createStore)(reducer);
   }
 
   let currentState: S | undefined;

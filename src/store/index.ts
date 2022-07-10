@@ -20,6 +20,6 @@ function counterReducer(state = 0, action: Action<'incremented' | 'decremented'>
   }
 }
 
-const store = createStore(counterReducer, applyMiddleware(loggerMiddleware, logger2Middleware) as any);
+const store = createStore(counterReducer, applyMiddleware(loggerMiddleware, logger2Middleware));
 
 export default store;

@@ -1,8 +1,7 @@
-import { Store, Middleware, Reducer } from './typings';
-import { AnyAction } from 'redux';
+import { Store, Middleware, Reducer, AnyAction } from './typings';
 import { createStore as CreateStore } from './index';
 
-export function applyMiddleware<S extends any>(...middleWares: Middleware<S>[]) {
+export function applyMiddleware<S extends any>(...middleWares: Middleware<any>[]) {
   return (createStore: typeof CreateStore) => (reducer: Reducer<S, AnyAction>): Store<S, AnyAction> => {
     const store = createStore<S, AnyAction>(reducer);
     let dispatch = store.dispatch;
