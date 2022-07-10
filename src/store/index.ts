@@ -1,10 +1,8 @@
 import { Action } from './../lib/redux-nut/typings';
 
 // import { createStore, Action, applyMiddleware } from "redux";
-import logger2Middleware from "../middleWares/log2";
-import loggerMiddleware from "../middleWares/logMiddleware";
-// import thunk from "redux-thunk";
-// import logger from "redux-logger";
+import thunk from "redux-thunk";
+import logger from "redux-logger";
 
 import { createStore } from '../lib/redux-nut';
 import { applyMiddleware } from '../lib/redux-nut/applyMiddleware';
@@ -20,6 +18,6 @@ function counterReducer(state = 0, action: Action<'incremented' | 'decremented'>
   }
 }
 
-const store = createStore(counterReducer, applyMiddleware(loggerMiddleware, logger2Middleware));
+const store = createStore(counterReducer, applyMiddleware(thunk as any, logger as any));
 
 export default store;
