@@ -1,5 +1,7 @@
+import { applyMiddleware } from 'redux';
+import { createStore } from './index';
 export interface Dispatch<A extends AnyAction> {
-  (params: A): void;
+  (params: A, ...args: any[]): void;
 }
 
 export interface Action<T = any> {
@@ -20,3 +22,7 @@ export interface Store<T extends any, A extends AnyAction> {
   subscribe: (fn: () => void) => () => void;
   dispatch: Dispatch<A>;
 }
+
+export type Enhancer = ReturnType<typeof applyMiddleware>; 
+
+export type Middleware<S extends any> = (storeApi: Store<S, AnyAction>) => (next: (action: AnyAction) => S) => (action: AnyAction) => S; 
